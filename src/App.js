@@ -59,10 +59,11 @@ class App extends Component {
     this.setState({winloading: true});
     
     await lottery.methods.pickWinner().send({
-      from: accounts[0]
+      from: accounts[0],
+      value: web3.utils.toWei('0.000175', 'ether')
     });
    
-    this.setState({ winmessage: 'Winner has been picked!', winloading: false });
+    this.setState({ winmessage: 'Random.org has been called to pick a winner. You need to wait another 30 seconds until oraclize confirms the call.', winloading: false });
 
 
   };
@@ -74,10 +75,16 @@ class App extends Component {
       <Container>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
        <h2>Ether Lottery</h2>
-       <p>This contract is managed by {this.state.manager}.
-          There are currently {this.state.players.length} people entered,
-          competing to win {web3.utils.fromWei(this.state.balance, 'ether')} ether! </p>
-         
+       <Message>
+         <Message.Header>
+          You can win virtual ether on the Rinkbey Testnet!
+        </Message.Header>
+        <p>Make sure you have installed MetaMask and selected the Rinkeby Test Network. This contract is managed by {this.state.manager}. Details of this contract can be viewed at <a href="https://rinkeby.etherscan.io/address/0x91169609c375a6502b621663d0f10a9ee9c0f7b7">etherscan</a>. 
+          The winner is randomly selected by <a href="https://www.random.org/">random.org</a> through <a href="http://www.oraclize.it">oraclize</a>, so no way of cheating (even for the manger).
+          There are currently <b>{this.state.players.length}</b> people entered,
+          competing to win <b>{web3.utils.fromWei(this.state.balance, 'ether')}</b> ether.
+          </p>
+        </Message> 
        <hr />
 
        <Form onSubmit={this.onSubmit}
@@ -86,11 +93,11 @@ class App extends Component {
              >
          <h4>Want to try your luck?</h4>
          <Form.Field>
-           <label>Amount to enter</label>
+           <label>Amount to enter (minimum 0.1 ether)</label>
            <Input
             value={this.state.value}
             onChange={ event => this.setState({ value: event.target.value }) }
-            label="either"
+            label="ether"
             labelPosition="right"
            />
          </Form.Field>
@@ -101,7 +108,7 @@ class App extends Component {
 
        <hr />
 
-       <h4>Ready to pick a winner? Can only be done by manager.</h4>
+       <h4>Ready to pick a winner (Can only be done by manager)?</h4>
 
        <Button 
           color="teal"
