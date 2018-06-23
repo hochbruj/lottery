@@ -77,7 +77,7 @@ class App extends Component {
        <h2>Ether Lottery</h2>
        <Message>
          <Message.Header>
-          You can win virtual ether on the Rinkbey Testnet!
+          You can win virtual ether on the Rinkeby Testnet!
         </Message.Header>
         <p>Make sure you have installed MetaMask and selected the Rinkeby Test Network. This contract is managed by {this.state.manager}. Details of this contract can be viewed at <a href="https://rinkeby.etherscan.io/address/0x91169609c375a6502b621663d0f10a9ee9c0f7b7">etherscan</a>. 
           The winner is randomly selected by <a href="https://www.random.org/">random.org</a> through <a href="http://www.oraclize.it">oraclize</a>, so no way of cheating (even for the manger).
