@@ -1,3 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+## Ether Lottery
 
-Lottery App with Ethereum smart contract using oraclize and the random.org API to randomly pick a winner.
+Lottery app with Ethereum smart contract using Oraclize and the random.org API to randomly pick a winner.
